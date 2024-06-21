@@ -1,11 +1,10 @@
+//added comment for checking
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User, Exercise, Storeids } = require("./db"); // Make sure this path is correct
-// const Exercise= require('./db');
+const { User, Exercise, Storeids } = require("./db");
 const axios = require("axios");
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.json());
+
 const SECREAT_KEY = "secreatkey128";
 const mongoose = require("mongoose");
 const app = express();
@@ -115,7 +114,6 @@ app.post("/add-exercise", async (req, res) => {
   }
 });
 
-// Route to get all exercises for a user
 app.get("/get-exercises/userId", async (req, res) => {
   const { userId } = req.params;
 
