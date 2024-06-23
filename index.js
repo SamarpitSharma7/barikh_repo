@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const { User, Exercise, Storeids } = require("./db");
 const axios = require("axios");
 
-const SECREAT_KEY = "secreatkey128";
 const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
@@ -22,7 +21,7 @@ app.post("/signup", async (req, res) => {
     const user = new User({ name, email, password: hashedPassword });
     await user.save();
 
-    const token = jwt.sign({ email: user.email, id: user._id }, SECREAT_KEY);
+    const token = jwt.sign({ email: user.email, id: user._id }, SECRET_KEY);
     res.status(201).json({ user, token });
   } catch (error) {
     console.error("Error inserting data:", error);
@@ -45,7 +44,7 @@ app.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       { email: existingUser.email, id: existingUser._id },
-      SECREAT_KEY
+      SECRET_KEY
     );
     res.status(200).json({ user: existingUser, token });
   } catch (error) {
@@ -193,12 +192,11 @@ app.get("/store_exercise/userId", async (req, res) => {
       try {
         const response = await axios.get(
           `
-https://exercisedb.p.rapidapi.com/exercises/exercise/${storeid.ex_id}`,
+            https://exercisedb.p.rapidapi.com/exercises/exercise/${storeid.ex_id}`,
           {
             headers: {
-              "x-rapidapi-key":
-                "35de18fe78mshcf2d360bb9533fap1e8a70jsn530b513da64f",
-              "x-rapidapi-host": "exercisedb.p.rapidapi.com",
+              "x-rapidapi-key": x - rapidapi - key,
+              "x-rapidapi-host": x - rapidapi - host,
             },
           }
         );
